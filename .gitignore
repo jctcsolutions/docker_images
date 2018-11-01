@@ -1,0 +1,6 @@
+*/.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+*/shared_dir/datasets/*
+*/shared_dir/models/*
+*/shared_dir/notebooks/*
+.DS_Store

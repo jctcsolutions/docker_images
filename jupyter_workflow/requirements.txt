@@ -1,0 +1,14 @@
+tqdm
+Pillow
+requests
+numpy
+scipy
+pandas
+nltk
+opencv-python>=2.4.9
+seaborn
+matplotlib
+scikit-learn
+scikit-image
+tensorflow>=1.11.0
+Keras
