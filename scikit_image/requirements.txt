@@ -1,0 +1,7 @@
+tqdm
+Pillow
+scipy
+seaborn
+bokeh
+matplotlib
+scikit-learn

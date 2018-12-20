@@ -1,0 +1,26 @@
+# Use an official Python runtime as a parent image
+FROM python:3.7
+
+# Set the working directory to /root
+WORKDIR /root
+
+# Copy the current directory contents into the container at /root
+COPY . /root
+
+# Install any needed packages specified in requirements.txt
+RUN python3 -m pip install --upgrade pip
+RUN python3 -m pip install --no-cache-dir jupyter
+RUN pip3 install --no-cache-dir --trusted-host pypi.python.org -r requirements.txt
+
+# Make port 8888 available to the world outside this container (for Jupyter Notebook)
+# Make port 6006 available to the world outside this container (for tensorboard)
+EXPOSE 8888 6006
+
+# Define environment variable
+# ENV NAME World
+
+# Mount volume
+VOLUME /shared_dir
+
+# Run app.py when the container launches
+CMD ["jupyter", "notebook", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--allow-root"]
