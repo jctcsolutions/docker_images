@@ -1,5 +1,5 @@
 # Use an official Python runtime as a parent image
-FROM python:3.7
+FROM python:3.6
 
 # Set the working directory to /root
 WORKDIR /root
@@ -8,9 +8,9 @@ WORKDIR /root
 COPY . /root
 
 # Install any needed packages specified in requirements.txt
-RUN python3 -m pip install --upgrade pip
-RUN python3 -m pip install --no-cache-dir jupyter
-RUN pip3 install --no-cache-dir --trusted-host pypi.python.org -r requirements.txt
+RUN python3 -m pip install --upgrade pip  && \
+    python3 -m pip install --no-cache-dir jupyter && \
+	pip3 install --no-cache-dir --trusted-host pypi.python.org -r requirements.txt
 
 # Make port 8888 available to the world outside this container (for Jupyter Notebook)
 # Make port 6006 available to the world outside this container (for tensorboard)

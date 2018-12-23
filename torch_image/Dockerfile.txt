@@ -8,12 +8,14 @@ WORKDIR /root
 COPY . /root
 
 # Install any needed packages specified in requirements.txt
-RUN python3 -m pip install --upgrade pip
-RUN python3 -m pip install --no-cache-dir jupyter
-RUN conda update conda
-RUN conda install dask
-RUN conda install -c conda-forge dask-ml
-RUN pip3 install --no-cache-dir --trusted-host pypi.python.org -r requirements.txt
+RUN python3 -m pip install --upgrade pip && \
+    python3 -m pip install --no-cache-dir jupyter && \
+    conda update conda && \
+    conda install dask && \
+    conda install -c conda-forge dask-ml && \
+    conda install pytorch torchvision -c pytorch && \
+    conda install -c conda-forge ffmpeg && \
+    pip3 install --no-cache-dir --trusted-host pypi.python.org -r requirements.txt
 
 # Make port 8888 available to the world outside this container (for Jupyter Notebook)
 # Make port 6006 available to the world outside this container (for tensorboard)
@@ -25,5 +27,5 @@ EXPOSE 8888 6006
 # Mount volume
 VOLUME /shared_dir
 
-# Run app.py when the container launches
+# Launch Jupyter notebook when the container launches
 CMD ["jupyter", "notebook", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--allow-root"]
